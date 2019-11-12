@@ -14,7 +14,8 @@ const Colors = {
   blue: '#3716d1',
   red: '#A70544',
   ligthPurple: '#ACA1D3',
-  orange: '#F38B4B',
+  ligthOrange: '#F38B4B',
+  orange: '#e25f54',
   transparent: 'transparent'
 };
 

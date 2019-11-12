@@ -37,10 +37,10 @@ class FormItem extends React.PureComponent {
   };
 
   render() {
-    const { value, error, stylesInput, theme, onChange } = this.props;
+    const { value, error, stylesInput, theme, onChange, placeholderColor } = this.props;
     const themeStyles = {
-      bottomColor: theme === 'light' ? Colors.mediumgray : Colors.white,
-      color: theme === 'light' ? Colors.mediumgray : Colors.white,
+      bottomColor: theme === 'light' ? Colors.mediumgray : Colors.ligthOrange,
+      color: theme === 'light' ? Colors.mediumgray : Colors.ligthOrange,
     };
 
     const stylesContent = {
@@ -57,7 +57,7 @@ class FormItem extends React.PureComponent {
             style={[styles.input, { color: themeStyles.color }, stylesInput]}
             value={value || ''}
             onChangeText={onChange}
-            placeholderTextColor={Colors.white}
+            placeholderTextColor={placeholderColor || Colors.white}
             duration={150}
             underlineColorAndroid={Colors.transparent}
             {...this.props}

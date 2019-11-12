@@ -1,12 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { StatusBar, Keyboard } from 'react-native';
+import { StatusBar, Keyboard, ImageBackground } from 'react-native';
 // import auth from '@react-native-firebase/auth';
-
 // components
 import LoginForm from 'smartchef/src/scenes/login/login.form';
 import {
-  MainView, BackgroundView, TitleView, WraperLabel, LinkButton, LinksView
+  MainView, BackgroundImageView, TitleView, WraperLabel, LinkButton, LinksView
 } from 'smartchef/src/components/auth';
 import Label from 'smartchef/src/components/Label'
 import { Colors } from 'smartchef/src/styles/Colors';
@@ -70,46 +69,48 @@ class loginScreen extends React.PureComponent {
     const { navigation } = this.props;
     navigation.navigate('Register')
   };
-
+  // colors={['#D71655', '#E83D38', '#E32402', '#e25f54']}
   render() {
     const { titleSize, titleHeight, titlePadding } = this.state;
+    const { msgError } = this.props;
     return (
       <MainView>
-        <StatusBar barStyle="default" backgroundColor="#D71655" />
-        <BackgroundView colors={['#D71655', '#E83D38', '#E32402', '#e25f54']}>
+        <StatusBar barStyle="dark-content" backgroundColor="white" />
+        <BackgroundImageView source={require('smartchef/src/assets/BG.png')}>
           <MainView>
             <TitleView titlePadding={titlePadding}>
               <Label
                 weight={700}
                 size={titleSize}
                 lineHeight={titleHeight}
-                color={Colors.white}
+                color={Colors.orange}
+                align="center"
               >
-               Welcome to smartchef
+                Smartchef
               </Label>
             </TitleView>
-            <LoginForm onSubmit={this._logIn} />
+            <LoginForm onSubmit={this._logIn} errorMessage={msgError} />
             <LinksView>
               <LinkButton onPress={this._goSignIn}>
-                <WraperLabel weight={410} color={Colors.white}>
-                  Register
+                <WraperLabel weight={410} color={Colors.orange}>
+                  Registrar me
                 </WraperLabel>
               </LinkButton>
               <LinkButton>
-                <WraperLabel weight={410} color={Colors.white}>
-                  Forgot Password
+                <WraperLabel weight={410} color={Colors.orange}>
+                  Recuperar Contraseña
                 </WraperLabel>
               </LinkButton>
             </LinksView>
           </MainView>
-        </BackgroundView>
+        </BackgroundImageView>
       </MainView>
     );
   }
 }
 
 const mapStateToProps = state => ({
-
+  msgError: state.session.get('errorMessage')
 })
 
 const mapStateToDispatch = dispatch => ({

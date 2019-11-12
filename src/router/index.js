@@ -12,6 +12,7 @@ import MainScreen from 'smartchef/src/components/MainScreen';
 import AuthLoadingScreen from 'smartchef/src/scenes/authLoading/authLoading.screen.container';
 import ChatScreen from 'smartchef/src/components/ChatScreen';
 import DetailScreen from 'smartchef/src/scenes/eventDetail/eventDetail.container';
+import AccountScreen from 'smartchef/src/scenes/account/account.container';
 // utils
 import { Colors } from 'smartchef/src/styles/Colors';
 
@@ -32,7 +33,7 @@ const TabNavigator = createBottomTabNavigator(
   {
     Home: MainStack,
     Other: defaultScreen,
-    Account: defaultScreen,
+    Account: AccountScreen,
   },
   {
     navigationOptions: {

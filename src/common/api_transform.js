@@ -110,14 +110,25 @@ const apiToCategories = categories => {
   const transformCategories = categories.map(category => ({
     key: category.id,
     name: category.name,
-    image_url: `http://ec2-34-207-127-183.compute-1.amazonaws.com:8000/storage/imgs/category/${category.image_url}`,
+    image_url: `${API_URL}storage/imgs/category/${category.image_url}`,
   }));
   return transformCategories;
 };
+
+const apiToUser = user => ({
+  full_name: user.full_name,
+  id: user.id,
+  id_profile: user.id_profile,
+  avatar: `${API_URL}storage/imgs/user/${user.image_url}`,
+  mail: user.mail,
+  birthday: user.birthday,
+  address: user.address,
+});
 
 export default {
   apiToListChef,
   apiToCategories,
   apiToEvents,
   apiToEventDetail,
+  apiToUser,
 };

@@ -5,7 +5,7 @@ import { Map } from 'immutable'
 const { Types, Creators } = createActions({
   forgotPassword: ['email'],
   setErrorMessage: ['errorMessage'],
-  saveDeviceOneSignalInfo: ['deviceInfo'],
+  saveDeviceInfo: ['deviceInfo'],
   setAppCredentials: ['credentials'],
   setLocation: ['location'],
   getProfile: ['user_id'],
@@ -32,7 +32,7 @@ const setErrorMessage = (state, { errorMessage }) => state.mergeDeep(Map({
 
 const forgotPassword = state => state
 
-const saveDeviceOneSignalInfo = (state, { deviceInfo }) => state.mergeDeep(Map({
+const saveDeviceInfo = (state, { deviceInfo }) => state.mergeDeep(Map({
   deviceInfo
 }))
 
@@ -47,7 +47,7 @@ const setProfile = (state, { userProfile }) => state.merge(Map({
 export const reducer = createReducer(INITIAL_STATE, {
   [Types.FORGOT_PASSWORD]: forgotPassword,
   [Types.SET_ERROR_MESSAGE]: setErrorMessage,
-  [Types.SAVE_DEVICE_ONE_SIGNAL_INFO]: saveDeviceOneSignalInfo,
+  [Types.SAVE_DEVICE_INFO]: saveDeviceInfo,
   [Types.SET_LOCATION]: setLocation,
   [Types.SET_PROFILE]: setProfile
 })

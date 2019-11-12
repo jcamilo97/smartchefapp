@@ -1,23 +1,33 @@
 import LinearGradient from 'react-native-linear-gradient';
 import styled from 'styled-components'
 import Label from 'smartchef/src/components/Label';
+import {ImageBackground} from 'react-native';
 
 export const MainView = styled.View`
   display: flex;
   flex: 1;
 `;
-export const BackgroundView = styled(LinearGradient)`
+export const BackgroundGradient = styled(LinearGradient)`
   display: flex;
   flex: 1;
   z-index: -1;
   padding-horizontal: 40px;
   padding-bottom: ${props => (props.keyboardShow ? 20 : 40)}px;
 `;
+
+export const BackgroundImageView = styled(ImageBackground)`
+  display: flex;
+  flex: 1;
+  z-index: -1;
+  padding-horizontal: 40px;
+  padding-bottom: ${props => (props.keyboardShow ? 20 : 40)}px;
+`;
+
 export const TitleView = styled.View`
   display: flex;
-  justify-content: ${props => (props.titlePadding ? 'center' : 'flex-start')};
-  align-items: ${props => (props.titlePadding ? 'center' : 'flex-start')};
-  margin: 3px 0px 60px 0px;
+  justify-content: center;
+  align-items: center;
+  margin: 3px 0px 12px 0px;
   padding-top: ${props => (props.titlePadding ? 21 : 83)}px;
 `;
 export const LinksView = styled.View`

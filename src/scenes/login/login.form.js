@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: 'transparent',
     alignItems: 'center',
-    justifyContent: 'flex-end',
+    justifyContent: 'center',
   },
   errorView: {
     marginBottom: 17
@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
     fontFamily: FONTS[500]
   },
   input: {
-    color: Colors.white
+    color: Colors.orange
   },
   buttonView: {
     width: '100%'
@@ -70,6 +70,7 @@ class Form extends React.Component {
           ]
         })(
           <FormItem
+            placeholderColor={Colors.ligthOrange}
             placeholder="Email"
             error={getFieldError('email')}
             textContentType="emailAddress"
@@ -77,7 +78,7 @@ class Form extends React.Component {
             stylesInput={styles.input}
             autoCapitalize="none"
             returnKeyType="done"
-            onSubmitEditing={() => this.submit()}
+            onSubmitEditing={() => this._submit()}
           />
         )}
         {getFieldDecorator('password', {
@@ -87,29 +88,30 @@ class Form extends React.Component {
           ]
         })(
           <FormItem
-            placeholder="password"
+            placeholderColor={Colors.ligthOrange}
+            placeholder="contraseña"
             error={getFieldError('password')}
             secureTextEntry
             textContentType="password"
             stylesInput={styles.input}
             returnKeyType="done"
-            onSubmitEditing={() => this.submit()}
+            onSubmitEditing={() => this._submit()}
           />
         )}
         <View style={styles.errorView}>
           <Text style={styles.erroMesage}>{errorMessage}</Text>
         </View>
         <ActionContainer>
-          <Label weight={700} size={'38px'} lineHeight={38} color={Colors.white}>
-            Log in
+          <Label weight={700} size={'38px'} lineHeight={38} color={Colors.orange}>
+            Ingresar
           </Label>
           <ButtonRound
             onPress={this._submit}
             round={32}
             height={64}
             width={64}
-            BgColor={Colors.white}
-            underlayColor={Colors.white}
+            BgColor={Colors.orange}
+            underlayColor={Colors.orange}
           >
             <Icon name="arrow-right" size={28} color="#000000" />
           </ButtonRound>

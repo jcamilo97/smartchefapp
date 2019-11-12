@@ -8,7 +8,8 @@ const StyledLabel = styled.Text`
   line-height: ${props => props.lineHeight || '19'}px;
   font-size: ${props => (props.size ? props.size : '16px')};
   color: ${props => (props.color ? props.color : Colors.darkgray)};
-`
+  text-align: ${({align}) => (align ? align : 'auto')}
+`;
 
 const Label = props => (
   <StyledLabel

@@ -6,6 +6,8 @@ const { Types, Creators } = createActions({
   setSession: ['sessionData'],
   logout: null,
   setIsLoggedIn: ['isLoggedIn'],
+  setToken: ['token'],
+  setLogout:['']
 })
 
 export const AppTypes = Types;
@@ -15,24 +17,28 @@ export default Creators;
 export const INITIAL_STATE = Map({
   sessionData: {},
   isLoggedIn: false,
+  token: null,
 })
 
 /* ------------- Reducers ------------- */
 
-const logout = state => state.merge(Map({
+const setLogout = state => state.merge(Map({
   sessionData: {},
-  isLoggedIn: false
 }));
 
 const setSession = (state, { sessionData }) =>
   state.mergeDeep(Map({ sessionData }));
 
-const setIsLoggedIn = (state, {isLoggedIn}) =>
-  state.mergeDeep(Map({isLoggedIn}));
+const setIsLoggedIn = (state, { isLoggedIn }) =>
+  state.mergeDeep(Map({ isLoggedIn }));
+
+const setToken = (state, { token }) =>
+  state.mergeDeep(Map({ token }));
 
 /* ------------- Hookup Reducers To Types ------------- */
 export const reducer = createReducer(INITIAL_STATE, {
   [Types.SET_SESSION]: setSession,
-  [Types.LOGOUT]: logout,
+  [Types.SET_LOGOUT]: setLogout,
   [Types.SET_IS_LOGGED_IN]: setIsLoggedIn,
+  [Types.SET_TOKEN]:setToken,
 })
