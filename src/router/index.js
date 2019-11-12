@@ -45,14 +45,14 @@ const TabNavigator = createBottomTabNavigator(
         let IconComponent = MdIcons;
         let iconName = `account-circle${focused ? '' : '-outline'}`;
         if (routeName === 'Home') {
-          iconName = `briefcase${focused ? '' : '-outline'}`;
+          iconName = `home${focused ? '' : '-outline'}`;
           // Sometimes we want to add badges to some icons.
           // You can check the implementation below.
           // IconComponent = HomeIconWithBadge;
-        } else if (routeName === 'Search') {
+        } else if (routeName === 'Other') {
           iconName = `briefcase-search${focused ? '' : '-outline'}`;
-        } else if (routeName === 'Loss') {
-          iconName = `briefcase-plus${focused ? '' : '-outline'}`;
+        } else if (routeName === 'Account') {
+          iconName = `account-circle${focused ? '' : '-outline'}`;
         }
 
         // You can return any component that you like here!
@@ -61,7 +61,7 @@ const TabNavigator = createBottomTabNavigator(
       headerMode: 'none'
     }),
     tabBarOptions: {
-      activeTintColor: Colors.blue,
+      activeTintColor: Colors.ligthOrange,
       inactiveTintColor: 'gray',
     },
   });

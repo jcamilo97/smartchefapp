@@ -7,11 +7,12 @@ import {
 } from 'react-native';
 import { Colors } from 'smartchef/src/styles/Colors'
 import FONTS from 'smartchef/src/styles/Fonts';
-
+import Label from 'smartchef/src/components/Label'
 const styles = StyleSheet.create({
   inputView: {
     width: '100%',
-    marginBottom: 21
+    marginBottom: 21,
+    marginTop: 6
   },
   input: {
     fontSize: 16,
@@ -37,7 +38,7 @@ class FormItem extends React.PureComponent {
   };
 
   render() {
-    const { value, error, stylesInput, theme, onChange, placeholderColor } = this.props;
+    const { value, error, stylesInput, theme, onChange, placeholderColor, title } = this.props;
     const themeStyles = {
       bottomColor: theme === 'light' ? Colors.mediumgray : Colors.ligthOrange,
       color: theme === 'light' ? Colors.mediumgray : Colors.ligthOrange,
@@ -53,6 +54,15 @@ class FormItem extends React.PureComponent {
     return (
       <View style={styles.inputView}>
         <View style={stylesContent}>
+          <Label
+            weight={700}
+            size={12}
+            lineHeight={12}
+            color={Colors.orange}
+            align="left"
+          >
+            {title}
+          </Label>
           <TextInput
             style={[styles.input, { color: themeStyles.color }, stylesInput]}
             value={value || ''}

@@ -27,7 +27,7 @@ export const TitleView = styled.View`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 3px 0px 12px 0px;
+  margin-bottom: 12px;
   padding-top: ${props => (props.titlePadding ? 21 : 83)}px;
 `;
 export const LinksView = styled.View`
@@ -35,6 +35,7 @@ export const LinksView = styled.View`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  align-items: center;
   margin-top: ${props => (props.keyboardShow ? 20 : 42)}px;
 `;
 export const LinkButton = styled.TouchableHighlight`

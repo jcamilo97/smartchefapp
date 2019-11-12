@@ -1,12 +1,13 @@
 import React from 'react';
 import { StatusBar, Keyboard } from 'react-native';
 import { GoogleSignin, statusCodes } from 'react-native-google-signin';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 // components
 import RegisterForm from 'smartchef/src/scenes/register/register.form';
 import {
-  MainView, BackgroundView, TitleView, WraperLabel, LinkButton, LinksView
+  MainView, BackgroundImageView, TitleView, WraperLabel, LinkButton, LinksView
 } from 'smartchef/src/components/auth';
 import { loginWithFacebook } from 'smartchef/src/common/firebase.auth'
 
@@ -55,11 +56,15 @@ class registerScreen extends React.PureComponent {
   _registerwithGoogle = async () => {
     const { navigation } = this.props;
     try {
+      // await GoogleSignin.revokeAccess();
+      // await GoogleSignin.signOut();
       await GoogleSignin.hasPlayServices();
-      const userInfo = await GoogleSignin.signIn();
+      const { user } = await GoogleSignin.signIn();
       // const user = await auth().signInWithCredential(credential);
-      navigation.navigate("Home")
-      console.log("el user", user, credential);
+      this.registerRef.setFieldsValue({
+        full_name: user.name,
+        mail: user.email,
+      });
     } catch (error) {
       if (error.code === statusCodes.SIGN_IN_CANCELLED) {
         // user cancelled the login flow
@@ -70,7 +75,6 @@ class registerScreen extends React.PureComponent {
       } else {
         // some other error happened
       }
-      console.tron.log("error",error)
     }
   };
   _keyboardDidShow = () => {
@@ -90,7 +94,7 @@ class registerScreen extends React.PureComponent {
   };
 
   _signIn = async signUp => {
-    const {registerUser} = this.props;
+    const { registerUser } = this.props;
     registerUser(signUp);
   };
 
@@ -98,7 +102,7 @@ class registerScreen extends React.PureComponent {
     const { navigation } = this.props;
     try {
       loginWithFacebook()
-        .then(({user,resutl}) => {
+        .then(({ user, resutl }) => {
           console.log("fbUser", user, resutl)
           navigation.navigate("Home")
         })
@@ -115,10 +119,10 @@ class registerScreen extends React.PureComponent {
     const { titleSize, titleHeight, titlePadding } = this.state;
     return (
       <MainView>
-        <StatusBar barStyle="default" backgroundColor="#D71655" />
-        <BackgroundView
+        <StatusBar barStyle="dark-content" backgroundColor="white" />
+        <BackgroundImageView
           keyboardShow={titlePadding}
-          colors={['#D71655', '#E83D38', '#E32402', '#e25f54']}
+          source={require('smartchef/src/assets/BG.png')}
         >
           <MainView>
             <TitleView titlePadding={titlePadding}>
@@ -126,41 +130,41 @@ class registerScreen extends React.PureComponent {
                 weight={700}
                 size={titleSize}
                 lineHeight={titleHeight}
-                color={Colors.white}
+                color={Colors.orange}
+                align="center"
               >
-                Create Account
+                Crear Cuenta
               </Label>
             </TitleView>
-            <RegisterForm onSubmit={this._signIn} />
+            <RegisterForm
+              onSubmit={this._signIn}
+              ref={ref => (this.registerRef = ref)}
+            />
             <LinksView>
-              <Label weight={400} color={Colors.white}>
-                Or register with
+              <Label weight={400} size="18px" color={Colors.orange}>
+                O registrarse con
               </Label>
               <LinkButton onPress={this._registerWithFb}>
-                <WraperLabel weight={410} color={Colors.white}>
-                  FB
-                </WraperLabel>
+                <Icon name="facebook-square" size={48} color="#1759FC" />
               </LinkButton>
               <LinkButton onPress={this._registerwithGoogle}>
-                <WraperLabel weight={410} color={Colors.white}>
-                  GO
-                </WraperLabel>
+                <Icon name="google" size={48} color={Colors.red} />
               </LinkButton>
             </LinksView>
             <LinksView keyboardShow={titlePadding}>
               <LinkButton onPress={this._navigateToLogIn}>
-                <WraperLabel weight={410} color={Colors.white}>
-                  Log in
+                <WraperLabel weight={410} color={Colors.orange}>
+                  Ingresar
                 </WraperLabel>
               </LinkButton>
               <LinkButton>
-                <WraperLabel weight={410} color={Colors.white}>
-                  Terms of Conditions
+                <WraperLabel weight={410} color={Colors.orange}>
+                  Terminos de Condiciones
                 </WraperLabel>
               </LinkButton>
             </LinksView>
           </MainView>
-        </BackgroundView>
+        </BackgroundImageView>
       </MainView>
     );
   }

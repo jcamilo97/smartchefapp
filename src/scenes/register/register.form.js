@@ -11,16 +11,16 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import { Colors } from 'smartchef/src/styles/Colors'
 import FONTS from 'smartchef/src/styles/Fonts';
 /** components */
-import { FormItem } from 'smartchef/src/components/form/FormItem'
-import ButtonRound from 'smartchef/src/components/Button.comp'
-import Label from 'smartchef/src/components/Label'
+import { FormItem } from 'smartchef/src/components/form/FormItem';
+import ButtonRound from 'smartchef/src/components/Button.comp';
+import Label from 'smartchef/src/components/Label';
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: 'transparent',
     alignItems: 'center',
-    justifyContent: 'flex-end',
+    justifyContent: 'center',
   },
   errorView: {
     marginBottom: 17
@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
     fontFamily: FONTS[500]
   },
   input: {
-    color: Colors.white
+    color: Colors.orange
   },
   buttonView: {
     width: '100%'
@@ -43,6 +43,7 @@ const ActionContainer = styled.View`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  margin-top: 30px;
 `;
 
 class Form extends React.Component {
@@ -52,6 +53,7 @@ class Form extends React.Component {
       if (!error) {
         onSubmit(values);
       }
+      console.tron.log("arre")
     });
   };
 
@@ -65,10 +67,12 @@ class Form extends React.Component {
         {getFieldDecorator('full_name', {
           validateFirst: true,
           rules: [
-            { required: true, message: 'username es requerido' }
+            { required: true, message: 'name es requerido' }
           ]
         })(
           <FormItem
+            title="Nombre"
+            placeholderColor={Colors.ligthOrange}
             placeholder="alexander von handler"
             error={getFieldError('full_name')}
             textContentType="username"
@@ -86,7 +90,9 @@ class Form extends React.Component {
           ]
         })(
           <FormItem
-            placeholder="Email"
+            title="Email"
+            placeholderColor={Colors.ligthOrange}
+            placeholder="smartchef@mail.com"
             error={getFieldError('mail')}
             textContentType="emailAddress"
             keyboardType="email-address"
@@ -103,7 +109,9 @@ class Form extends React.Component {
           ]
         })(
           <FormItem
-            placeholder="Password"
+            title="Contraseña"
+            placeholderColor={Colors.ligthOrange}
+            placeholder="Awemsome#2018;"
             error={getFieldError('pass')}
             secure
             textContentType="password"
@@ -134,17 +142,14 @@ class Form extends React.Component {
           </View>
         )}
         <ActionContainer>
-          <Label weight={700} size="38px" lineHeight={38} color={Colors.white}>
-            Register
-          </Label>
+          <Label weight={700} size="38px" lineHeight={38} color={Colors.orange}>Registar Me</Label>
           <ButtonRound
             onPress={this._submit}
             round={32}
             size={64}
-            BgColor={Colors.white}
-            underlayColor={Colors.white}
-          >
-            <Icon name="arrow-right" size={28} color="#000000" />
+            BgColor={Colors.orange}
+            underlayColor={Colors.orange}>
+            <Icon name="arrow-right" size={28} color={Colors.white} />
           </ButtonRound>
         </ActionContainer>
       </View>

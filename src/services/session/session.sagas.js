@@ -40,12 +40,15 @@ export function* getProfile(api, action) {
 function* registerUser(api, action) {
   const { newUser } = action;
   const params = Object.assign({}, newUser, { id_profile: 3 });
-  const authorization = yield select(Utils.getAuthToken);
-  const response = yield call(api.registeruser, params, authorization);
+  const response = yield call(api.registeruser, params);
   console.tron.log("response", response)
   if (response.ok && response.status < 300) {
-    const user = JSON.stringify({ user: response.data.user, token })
-    yield AsyncStorage.setItem('@smartchefUser', user);
+    yield put(
+      SessionActions.setAppCredentials({
+        mail: newUser.mail,
+        pass: newUser.pass,
+      }),
+    );
     yield put(AppActions.setSession(response.data));
   }
 }

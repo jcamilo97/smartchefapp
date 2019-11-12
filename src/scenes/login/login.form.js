@@ -113,7 +113,7 @@ class Form extends React.Component {
             BgColor={Colors.orange}
             underlayColor={Colors.orange}
           >
-            <Icon name="arrow-right" size={28} color="#000000" />
+            <Icon name="arrow-right" size={28} color={Colors.white} />
           </ButtonRound>
         </ActionContainer>
       </View>

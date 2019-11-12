@@ -4,7 +4,7 @@ const getListings = state => state.listings.get('listings')
 
 const getMapFullListings = state => state.listings.get('mapListings')
 
-const getAuthToken = state => `Bearer ${state.appPersist.get('sessionData').access_token}`
+const getAuthToken = state => `Bearer ${state.appPersist.get('token')}`;
 
 const getNotificationsToken = state => state.session.get('deviceInfo')
 

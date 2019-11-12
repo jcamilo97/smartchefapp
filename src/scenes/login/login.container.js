@@ -10,7 +10,7 @@ import {
 import Label from 'smartchef/src/components/Label'
 import { Colors } from 'smartchef/src/styles/Colors';
 // actions
-import sessionActions from 'smartchef/src/services/session/session.reducer'
+import sessionActions from 'smartchef/src/services/session/session.reducer';
 
 class loginScreen extends React.PureComponent {
   static navigationOptions = {
