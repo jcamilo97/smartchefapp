@@ -5,8 +5,8 @@ import {
   Text,
   StyleSheet,
 } from 'react-native';
-import Header from './Header';
-import StorySection from './StorySection';
+// import Header from './Header';
+// import StorySection from './StorySection';
 import HotDealSection from 'smartchef/src/containers/Categories.comp.container';
 import EventList from 'smartchef/src/containers/Events.comp.container';
 // import Footer from './Footer';
@@ -23,8 +23,8 @@ export default class MainScreen extends Component {
     return (
       <View style={{flex: 1}}>
         <ScrollView style={{backgroundColor: '#f2f2f2'}}>
-          <Header />
-          <StorySection />
+          {/* <Header />
+          <StorySection /> */}
           <HotDealSection />
           <EventList navigation={this.props.navigation} />
         </ScrollView>

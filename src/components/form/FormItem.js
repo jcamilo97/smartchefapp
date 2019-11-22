@@ -45,6 +45,7 @@ class FormItem extends React.PureComponent {
     };
 
     const stylesContent = {
+      paddingBottom: 6,
       borderBottomWidth: 1,
       borderBottomColor: error ? Colors.red : themeStyles.bottomColor
     };
