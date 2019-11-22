@@ -33,6 +33,8 @@ const create = (baseURL = API_URL) => {
 
   const getEventDetail = id => api.get(`/event/index/${id}`);
 
+  const getDishesbyCategory = id => api.get(`/fooddish/category/${id}`);
+
   return {
     login,
     registeruser,
@@ -40,6 +42,7 @@ const create = (baseURL = API_URL) => {
     getCategories,
     getEvents,
     getEventDetail,
+    getDishesbyCategory
   };
 };
 

@@ -1,10 +1,10 @@
 import React from 'react';
-import { View, ImageBackground, Text, StyleSheet } from 'react-native';
+import { View, ImageBackground, Text, StyleSheet, TouchableHighlight } from 'react-native';
 import { Divider } from 'react-native-elements';
 
-const HotDealItem = ({title, imgSrc}) => {
+const HotDealItem = ({ title, imgSrc }) => {
   return (
-    <ImageBackground style={styles.backgroundImage} source={{uri: imgSrc}}>
+    <ImageBackground style={styles.backgroundImage} source={{ uri: imgSrc }}>
       <View style={styles.coverContainer}>
         <Text style={styles.coverText}>{title}</Text>
         <Divider styleName="line" style={styles.coverDivider} />

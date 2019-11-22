@@ -8,6 +8,7 @@ import { reducer as appReducer } from 'smartchef/src/services/app/app.persist.re
 import { reducer as eventsReducer } from 'smartchef/src/services/events/events.reducers';
 import { reducer as categoyReducer } from 'smartchef/src/services/category/category.reducers';
 import { reducer as sesssionReducer } from 'smartchef/src/services/session/session.reducer';
+import { reducer as dishesReducer } from 'smartchef/src/services/dishes/dishes.reducers';
 
 export default () => {
   const rootReducer = combineReducers({
@@ -16,6 +17,7 @@ export default () => {
     events: eventsReducer,
     categories: categoyReducer,
     session: sesssionReducer,
+    dishes: dishesReducer,
   });
 
   return configureStore(rootReducer, rootSaga);

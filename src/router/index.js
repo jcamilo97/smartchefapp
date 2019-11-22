@@ -13,6 +13,7 @@ import AuthLoadingScreen from 'smartchef/src/scenes/authLoading/authLoading.scre
 import ChatScreen from 'smartchef/src/components/ChatScreen';
 import DetailScreen from 'smartchef/src/scenes/eventDetail/eventDetail.container';
 import AccountScreen from 'smartchef/src/scenes/account/account.container';
+import DishesScreen from 'smartchef/src/scenes/dishCategoryList/dishByCategory.screen';
 // utils
 import { Colors } from 'smartchef/src/styles/Colors';
 
@@ -78,6 +79,7 @@ const HomeStack = createStackNavigator({
   AppMain: TabNavigator,
   Detail: DetailScreen,
   Chat: ChatScreen,
+  Dishes: DishesScreen,
 });
 
 export default createAppContainer(

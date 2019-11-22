@@ -4,11 +4,21 @@ import { connect } from 'react-redux';
 import styled from 'styled-components';
 import Label from 'smartchef/src/components/Label';
 import { Colors } from 'smartchef/src/styles/Colors';
+import {
+  NavigationScreenProps,
+  NavigationScreenComponent
+} from 'react-navigation';
 
 const Content = styled.View`
   display: flex;
   background-color: #fff;
   flex-direction: row;
+  padding: 8px 3px 8px 0px;
+`;
+const EmptyContainer = styled(Content)`
+  justify-content: center;
+  align-items: center;
+  flex: 1;
 `;
 
 const ImageW = styled.Image`
@@ -19,10 +29,14 @@ const ImageW = styled.Image`
 const Details = styled.View`
   display: flex;
   flex-direction: column;
+  flex: 1;
+  margin-left: 6px;
 `;
+interface Props extends NavigationScreenProps {
+  // ... other props
+}
 
-const FoodListByCategory = ({ dishes }) => {
-
+const FoodListByCategory: NavigationScreenComponent<Props> = ({ dishes }) => {
   const renderItem = item => {
     return (
       <Content>
@@ -31,7 +45,7 @@ const FoodListByCategory = ({ dishes }) => {
           <Label
             color={Colors.dark}
             weight={700}
-            size={'12px'}
+            size={'14px'}
             lineHeight={14}
             ellipsizeMode="tail"
             numberOfLines={2}
@@ -51,7 +65,7 @@ const FoodListByCategory = ({ dishes }) => {
           <Label
             color={Colors.dark}
             weight={700}
-            size={'12px'}
+            size={'14px'}
             lineHeight={14}
             ellipsizeMode="tail"
             numberOfLines={2}
@@ -76,21 +90,34 @@ const FoodListByCategory = ({ dishes }) => {
   return (
     <FlatList
       data={dishes}
-      keyExtractor={item => item.key}
+      keyExtractor={item => `${item.key}`}
       renderItem={({ item }) => renderItem(item)}
+      ListEmptyComponent={(<EmptyContainer>
+        <Label
+          color="#4a4a4a"
+          weight={700}
+          size={'16px'}
+          lineHeight={16}
+          ellipsizeMode="tail"
+          numberOfLines={2}
+        >
+          No hay platos para esta categoria
+      </Label></EmptyContainer>)}
     />
   );
 };
 
-// const mapStateToProps = state => ({
-//   sessionData: state.appPersist.get('sessionData')
-// })
+FoodListByCategory.navigationOptions = {
+  title: "Platos"
+}
 
-// const mapDispatchToProps = dispatch => ({
-//   logout: user_id => dispatch(AppActions.logout(user_id)),
-// })
+const mapStateToProps = state => ({
+  dishes: state.dishes.get('dishes')
+})
 
-// export default connect(
-//   mapStateToProps,
-//   mapDispatchToProps
-// )(AccountScreen)
+const mapDispatchToProps = dispatch => ({})
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(FoodListByCategory)

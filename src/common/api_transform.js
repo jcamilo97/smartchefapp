@@ -70,7 +70,7 @@ const apiToEvents = events => {
         address: event.chef.address,
       },
     };
-    return {...wrapper, dishes};
+    return { ...wrapper, dishes };
   });
   return transformEvents;
 };
@@ -103,7 +103,7 @@ const apiToEventDetail = eventDetail => {
       address: eventDetail.chef.address,
     },
   };
-  return {...wrapper, dishes};
+  return { ...wrapper, dishes };
 };
 
 const apiToCategories = categories => {
@@ -113,6 +113,16 @@ const apiToCategories = categories => {
     image_url: `${API_URL}storage/imgs/category/${category.image_url}`,
   }));
   return transformCategories;
+};
+
+const apiToDishesByCategory = dishes => {
+  const transformDishes = dishes.map(dish => ({
+    key: dish.id,
+    name: dish.name,
+    description: dish.description,
+    img: `${API_URL}storage/imgs/food/${dish.image_url}`,
+  }));
+  return transformDishes;
 };
 
 const apiToUser = user => ({
@@ -131,4 +141,5 @@ export default {
   apiToEvents,
   apiToEventDetail,
   apiToUser,
+  apiToDishesByCategory,
 };
